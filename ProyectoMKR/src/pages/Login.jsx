@@ -1,21 +1,13 @@
 // src/pages/Login.jsx
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { AuthContext } from '../Context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 
-export default function Login(){
-  const { login } = useContext(AuthContext);
+export default function Login() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-  const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
-    const res = await login(data.username, data.password);
-    if (res.ok) {
-      navigate('/dashboard');
-    } else {
-      alert('Error en login: ' + JSON.stringify(res.error));
-    }
+  const onSubmit = data => {
+    console.log('Datos del formulario:', data);
+    alert(`Login simulado: ${data.username}`);
   };
 
   return (
