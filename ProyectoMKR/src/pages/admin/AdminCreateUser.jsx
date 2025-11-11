@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import api from '../api/api'
+import api from '../../api/api'
 
 export default function AdminCreateUser() {
   const { register, handleSubmit } = useForm()

@@ -1,7 +1,7 @@
 
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { AuthContext } from '../Context/AuthContext';
+import { AuthContext } from '../../Context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register(){
