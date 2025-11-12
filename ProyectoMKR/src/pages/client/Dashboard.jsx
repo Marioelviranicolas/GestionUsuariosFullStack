@@ -1,14 +1,8 @@
 import React from 'react'
-import { useAuth } from '../../Context/AuthContext'
-
-export default function Dashboard() {
-  const { user } = useAuth()
-  return (
-    <div>
-      <h2>Dashboard</h2>
-      <p>Bienvenido {user?.nombre}</p>
-      <p>Correo: {user?.username}</p>
-      <p>Rol: {user?.perfil?.nombre}</p>
-    </div>
-  )
+export default function Dashboard(){
+  return(
+    <div style ={{padding: '20px',backgroundColor:'#f0f0f0',height: '100vh'}}>
+  <h1> Dashboard Cliente </h1>
+  </div>
+  );
 }
