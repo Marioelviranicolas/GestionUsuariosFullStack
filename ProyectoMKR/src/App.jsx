@@ -1,16 +1,17 @@
-// src/App.jsx
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Register from './components/autentication/RegisterForm';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/publicas/HomePage';
 
 
-
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
-    <div>
-      <Register/>
-    </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* Agrega tus rutas a futuro */}
+      </Routes>
     </BrowserRouter>
   );
 }
+
+export default App;
