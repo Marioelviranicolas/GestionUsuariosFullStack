@@ -1,28 +1,32 @@
 // src/pages/Login.jsx
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import api from '../../api/api';
+import api,{loginUser} from '../../api/api';
+import {useNavigate} from 'react-router-dom';
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      // construimos el header Basic base64(user:pass)
-      const basicAuth = 'Basic ' + btoa(`${data.username}:${data.password}`);
-      localStorage.setItem('auth', basicAuth); // lo guardamos
 
-      // llamamos al backend
-      const response = await api.post('/api/usuarios/login');
-      console.log('Usuario autenticado:', response.data);
+        const usuario = await loginUser(data.username, data.password);
+        console.log('Usuario autenticado: ',usuario);
 
-      alert(`Bienvenido ${response.data.username || data.username}`);
+        alert(`Bienvenido ${usuario?.username || data.username}`);
+
+        if(usuario.perfil?.idPerfil==1){
+          navigate('/admin');//te mande a administrador
+        }else{
+          navigate('/dashboard');//te manda a cliente
+        }
+
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-      alert('Credenciales incorrectas');
-      localStorage.removeItem('auth'); // limpiar si falla
+        console.error('Error al iniciar sesion:',error);
+        alert('Credenciales incorrectas');
     }
-  }
+  };
 
   return (
     <div>

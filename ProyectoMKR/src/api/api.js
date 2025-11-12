@@ -18,4 +18,22 @@ api.interceptors.request.use(config => {
   return config;
 });
 
+//Funcion del login 
+export const loginUser = async (username, password) => {
+  try {
+    
+    //construimos el header basic y lo guardamos
+    const basicAuth = 'Basic ' + btoa(`${username}:${password}`);
+    localStorage.setItem('auth', basicAuth);
+
+    //llamada al backend
+    const response = await api.post('/api/usuarios/login');
+
+    return response.data;//devuelve info del usuario
+  } catch (error) {
+    localStorage.removeItem('auth');
+    throw error;
+    
+  }
+}
 export default api;
