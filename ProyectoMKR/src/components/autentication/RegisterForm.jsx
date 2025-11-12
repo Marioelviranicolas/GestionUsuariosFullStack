@@ -72,7 +72,7 @@ export default function RegisterForm() {
         alert('✅ Usuario registrado con éxito');
         console.log('📤 Enviando datos al backend:', usuario);
 
-        navigate('/LoginForm');
+        navigate('/login');
         return;
       }
   
@@ -90,15 +90,15 @@ export default function RegisterForm() {
     }
   };    
 
-  return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Registro de Usuario</h2>
+ return (
+    <div className="register-form-container">
+      <h2 className="register-form-title">Registro de Usuario</h2>
 
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Correo electrónico</label>
+      <form onSubmit={handleSubmit} className="register-form">
+        <div className="form-group">
+          <label className="form-label">Correo electrónico</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="email"
             name="username"
             value={formData.username}
@@ -107,10 +107,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Nombre</label>
+        <div className="form-group">
+          <label className="form-label">Nombre</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="text"
             name="nombre"
             value={formData.nombre}
@@ -119,10 +119,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Apellidos</label>
+        <div className="form-group">
+          <label className="form-label">Apellidos</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="text"
             name="apellidos"
             value={formData.apellidos}
@@ -131,10 +131,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Fecha de nacimiento</label>
+        <div className="form-group">
+          <label className="form-label">Fecha de nacimiento</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="date"
             name="fechaNacimiento"
             value={formData.fechaNacimiento}
@@ -143,10 +143,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Dirección</label>
+        <div className="form-group">
+          <label className="form-label">Dirección</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="text"
             name="direccion"
             value={formData.direccion}
@@ -154,10 +154,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Contraseña</label>
+        <div className="form-group">
+          <label className="form-label">Contraseña</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="password"
             name="password"
             value={formData.password}
@@ -166,10 +166,10 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Confirmar contraseña</label>
+        <div className="form-group">
+          <label className="form-label">Confirmar contraseña</label>
           <input
-            style={styles.input}
+            className="form-input"
             type="password"
             name="confirmPassword"
             value={formData.confirmPassword}
@@ -178,15 +178,11 @@ export default function RegisterForm() {
           />
         </div>
 
-        {errorMessage && <p style={styles.error}>{errorMessage}</p>}
+        {errorMessage && <p className="form-error">{errorMessage}</p>}
 
         <button
           type="submit"
-          style={{
-            ...styles.button,
-            backgroundColor: isSubmitting ? '#999' : '#28a745',
-            cursor: isSubmitting ? 'not-allowed' : 'pointer'
-          }}
+          className={`form-button ${isSubmitting ? 'form-button-disabled' : ''}`}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Registrando...' : 'Registrarse'}
@@ -195,55 +191,3 @@ export default function RegisterForm() {
     </div>
   );
 }
-
-// 🎨 Estilos limpios
-const styles = {
-  container: {
-    maxWidth: '420px',
-    margin: '60px auto',
-    padding: '25px',
-    backgroundColor: '#fff',
-    borderRadius: '10px',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-    fontFamily: 'Arial, sans-serif'
-  },
-  title: {
-    textAlign: 'center',
-    marginBottom: '25px',
-    color: '#333'
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  formGroup: {
-    marginBottom: '15px'
-  },
-  label: {
-    fontSize: '14px',
-    marginBottom: '5px',
-    display: 'block',
-    color: '#444'
-  },
-  input: {
-    width: '100%',
-    padding: '8px',
-    border: '1px solid #ccc',
-    borderRadius: '5px',
-    fontSize: '14px'
-  },
-  error: {
-    color: 'red',
-    fontSize: '13px',
-    textAlign: 'center',
-    marginTop: '10px'
-  },
-  button: {
-    border: 'none',
-    color: 'white',
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '5px',
-    transition: 'background 0.3s'
-  }
-};

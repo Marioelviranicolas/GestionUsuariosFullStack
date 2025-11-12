@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/publicas/HomePage';
+import LoginPage from './pages/publicas/LoginPage';
+import RegisterPage from './pages/publicas/RegisterPage';
 
 
 function App() {
@@ -8,7 +10,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* Agrega tus rutas a futuro */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </BrowserRouter>
   );
