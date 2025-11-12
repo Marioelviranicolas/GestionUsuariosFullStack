@@ -1,0 +1,74 @@
+/* src/pages/public/HomePage.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2563eb, #7e22ce);
+    color: white;
+  }
+  
+  .homepage-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .homepage-title {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .homepage-subtitle {
+    font-size: 1.2rem;
+    color: #dbeafe;
+    margin-bottom: 2rem;
+  }
+  
+  .homepage-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 600px) {
+    .homepage-buttons {
+      flex-direction: row;
+    }
+  }
+  
+  .btn {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .btn-login {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+  }
+  
+  .btn-login:hover {
+    background-color: white;
+    color: #2563eb;
+  }
+  
+  .btn-register {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+  }
+  
+  .btn-register:hover {
+    background-color: white;
+    color: #2563eb;
+  }
+  
