@@ -77,7 +77,7 @@ export default function RegisterForm() {
       }
   
       if (data === -1) {
-        setErrorMessage('⚠️ El usuario ya existe, prueba con otro correo.');
+        setErrorMessage('⚠️ El usuario ya existe, prueba con otro correoo.');
         return;
       }
   
