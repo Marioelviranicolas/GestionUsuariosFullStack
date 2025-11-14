@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import api,{loginUser} from '../../api/api';
 import {useNavigate} from 'react-router-dom';
+import "./LoginForm.css";
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
@@ -29,15 +30,16 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login-box">
+      <h2>Iniciar sesión</h2>
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="input-group">
           <label>Usuario</label>
           <input {...register('username', { required: 'Requerido' })} />
           {errors.username && <p>{errors.username.message}</p>}
         </div>
-        <div>
+        <div className="input-group">
           <label>Contraseña</label>
           <input type="password" {...register('password', { required: 'Requerido' })} />
           {errors.password && <p>{errors.password.message}</p>}
