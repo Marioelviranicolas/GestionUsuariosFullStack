@@ -1,12 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../api/api'
+import './UsersList.css'
 
 export default function UsersList() {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    api.get('/todos').then(res => setUsers(res.data))
-  }, [])
+    api.get('/todos/exceptUsers').
+        then(res => setUsers(res.data)).
+        catch(err => console.error('Error al cargar usuarios',err))
+   }, [])
+
+   const handleDelete = (username) => {
+    if (window.confirm('¿Estás seguro que quieres eliminar este usuario?')){
+      api.delete(`/usuarios/${encodeURIComponent(username)}`)
+      .then(res =>{
+        console.log('Respuesta de la API:', res.data)
+        if (res.data === 1) {
+          console.log('Usuario eliminado correctamente')
+          setUsers(prevUsers => prevUsers.filter(u => u.username !== username))
+        } else {
+          console.log('No se pudo eliminar el usuario')
+        }
+      })
+      .catch(err => console.error('Error al eliminar usuario',err))
+    }
+   }
+   const handleEdit = (usuario) => {
+    console.log('de momento nada',usuario);
+
+   }
 
   return (
     <div>
@@ -14,7 +37,13 @@ export default function UsersList() {
       <ul>
         {users.map(u => (
           <li key={u.idUsuario}>
-            {u.nombre} ({u.username}) - {u.perfil?.nombre}
+            <div>
+              {u.nombre} ({u.username}) - {u.perfil?.nombre}
+            </div>
+            <div className="actions">
+              <button onClick={()=> handleEdit(u)}>Editar</button>
+              <button onClick={()=> handleDelete(u.username)}>Eliminar</button>
+            </div>
           </li>
         ))}
       </ul>

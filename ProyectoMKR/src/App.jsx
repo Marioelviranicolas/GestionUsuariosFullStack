@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/publicas/HomePage';
 import LoginPage from './pages/publicas/LoginPage';
 import RegisterPage from './pages/publicas/RegisterPage';
-import AdminCreateUser from './pages/admin/AdminCreateUser';
+import AdminCreateUser from './pages/admin/UsersList';
 import Dashboard from './pages/client/Dashboard';
+import UsersList from './pages/admin/UsersList';
 
 
 
@@ -15,7 +16,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/admin" element={<AdminCreateUser />} />
+        <Route path="/admin" element={<UsersList />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
