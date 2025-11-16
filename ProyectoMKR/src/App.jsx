@@ -4,6 +4,7 @@ import HomePage from './pages/publicas/HomePage';
 import LoginPage from './pages/publicas/LoginPage';
 import RegisterPage from './pages/publicas/RegisterPage';
 import AdminCreateUser from './pages/admin/UsersList';
+import AdminLoginPage from './pages/publicas/AdminLoginPage';
 import Dashboard from './pages/client/Dashboard';
 import UsersList from './pages/admin/UsersList';
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/admin" element={<UsersList />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin-login" element={<AdminLoginPage />} />
       </Routes>
     </BrowserRouter>
   );
