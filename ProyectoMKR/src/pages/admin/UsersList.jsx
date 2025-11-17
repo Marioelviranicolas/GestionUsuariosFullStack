@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../api/api'
 import './UsersList.css'
+import { Link } from "react-router-dom";
 
 export default function UsersList() {
   const [users, setUsers] = useState([])
@@ -34,6 +35,11 @@ export default function UsersList() {
   return (
     <div>
       <h2>Lista de usuarios</h2>
+      <div className="create-button">
+        <Link to="/admin/create-user">
+            <button>Crear usuario</button>
+        </Link>
+      </div>
       <ul>
         {users.map(u => (
           <li key={u.idUsuario}>
