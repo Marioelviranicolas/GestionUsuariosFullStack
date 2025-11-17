@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
+import "./RegisterForm.css"
 
 export default function RegisterForm() {
   const navigate = useNavigate();

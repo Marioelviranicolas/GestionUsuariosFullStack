@@ -7,7 +7,6 @@ export default function RegisterPage() {
   return (
     <div className="register-page">
       <div className="register-container">
-        <h1>Crear una nueva cuenta</h1>
         <RegisterForm />
       </div>
     </div>

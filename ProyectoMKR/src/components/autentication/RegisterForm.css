@@ -1,40 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
 
-/* Página de registro */
-.register-page {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #000000 0%, #2f322f 100%);
-  font-family: 'DM Sans', sans-serif;
-  padding: 2rem;
-  
-}
-
-.register-container {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  width: 100%;
-  animation: fadeIn 0.8s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Contenedor principal del formulario */
+/* Contenedor principal del registro */
 .register-form-container {
-  width: 500px;
+  width: 400px;
+  height: 90vh;
   padding: 3rem 2.5rem;
   background: rgb(40, 39, 39);
   border-radius: 7px;
@@ -42,6 +11,8 @@
   border: 1px solid #4a15ec;
   transition: all 0.3s ease;
   font-family: 'DM Sans', sans-serif;
+  margin-right: 200px;
+  overflow-y: auto
 }
 
 .register-form-container:hover {
@@ -141,10 +112,6 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .register-page {
-    padding: 1rem;
-  }
-
   .register-form-container {
     width: 100%;
     max-width: 450px;
