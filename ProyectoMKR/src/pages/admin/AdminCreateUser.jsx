@@ -1,15 +1,16 @@
 import React,{useState,useEffect} from 'react'
 import api from '../../api/api'
 import './AdminCreateUser.css'
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminCreateUser(){
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
     nombre: '',
     apellidos: '',
     enabled: 1,
-    fechaRegistro: '',
     fechaNacimiento: '',
     direccion: '',
     perfilId: '',
@@ -34,6 +35,10 @@ export default function AdminCreateUser(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(!formData.username || !formData.password){
+      alert('El username y la password son obligatorios');
+      return;
+    }
     // Ajustar enabled a número
     const payload = {
       username: formData.username,
@@ -41,10 +46,9 @@ export default function AdminCreateUser(){
       nombre: formData.nombre,
       apellidos: formData.apellidos,
       enabled: Number(formData.enabled),
-      fechaRegistro: formData.fechaRegistro || null,
       fechaNacimiento: formData.fechaNacimiento || null,
       direccion: formData.direccion,
-      // Enviar perfil solo si se selecciona, sino backend aplicará perfil por defecto
+      // Enviar perfil solo si se selecciona
       perfil: formData.perfilId ? { idPerfil: Number(formData.perfilId) } : null
     };
     api.post('/registro', payload)
@@ -56,7 +60,6 @@ export default function AdminCreateUser(){
           nombre: '',
           apellidos: '',
           enabled: 1,
-          fechaRegistro: '',
           fechaNacimiento: '',
           direccion: '',
           perfilId: '',
@@ -70,11 +73,11 @@ export default function AdminCreateUser(){
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username *</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+          <input type="text" name="username" value={formData.username} onChange={handleChange}  />
         </div>
         <div>
           <label>Password *</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input type="password" name="password" value={formData.password} onChange={handleChange} />
         </div>
         <div>
           <label>Nombre</label>
@@ -90,10 +93,6 @@ export default function AdminCreateUser(){
             <option value={1}>Activo</option>
             <option value={0}>Inactivo</option>
           </select>
-        </div>
-        <div>
-          <label>Fecha de registro</label>
-          <input type="date" name="fechaRegistro" value={formData.fechaRegistro} onChange={handleChange} />
         </div>
         <div>
           <label>Fecha de nacimiento</label>
@@ -113,8 +112,11 @@ export default function AdminCreateUser(){
           </select>
           <small>Si no seleccionas perfil, se asignará automáticamente "Cliente"</small>
         </div>
-        <button type="submit">Crear Usuario</button>
+         <button type="submit">Crear Usuario</button>
       </form>
+      <button type="button" className="volver-btn" onClick={() => navigate('/admin')}>
+        Volver a la lista de usuarios
+      </button>
     </div>
   );
 }
