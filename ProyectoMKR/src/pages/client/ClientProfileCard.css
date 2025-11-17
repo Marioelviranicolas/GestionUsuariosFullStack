@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
+
+.profile-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 2.5rem;
+  background: rgb(40, 39, 39);
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid #4a15ec;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  margin: 2rem auto;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(74, 21, 236, 0.3);
+}
+
+/* Header con foto de perfil */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-image-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #4a15ec;
+  box-shadow: 0 5px 20px rgba(74, 21, 236, 0.3);
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a15ec 0%, #6d5dfc 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  border: 4px solid #4a15ec;
+  box-shadow: 0 5px 20px rgba(74, 21, 236, 0.3);
+}
+
+.upload-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  background: #4a15ec;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid rgb(40, 39, 39);
+}
+
+.upload-button:hover {
+  background: #6d5dfc;
+  transform: scale(1.1);
+}
+
+.upload-button svg {
+  color: white;
+}
+
+/* Nombre y badge */
+.profile-name {
+  text-align: center;
+}
+
+.profile-name h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.profile-badge {
+  display: inline-block;
+  background: #4a15ec;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Divider */
+.profile-divider {
+  width: 100%;
+  height: 1px;
+  background: #4a4a4a;
+  margin: 2rem 0;
+}
+
+/* Información del perfil */
+.profile-info {
+  margin-bottom: 2rem;
+}
+
+.info-group {
+  margin-bottom: 1.5rem;
+}
+
+.info-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.info-group p {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 0.8rem;
+  background: #2a2929;
+  border-radius: 5px;
+  border: 1px solid #4a4a4a;
+}
+
+/* Botones de acciones */
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.action-button {
+  flex: 1;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button.primary {
+  background: #4a15ec;
+  color: white;
+}
+
+.action-button.primary:hover {
+  background: #6d5dfc;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(74, 21, 236, 0.4);
+}
+
+.action-button.secondary {
+  background: #161616;
+  color: white;
+  border: 1px solid #4a4a4a;
+}
+
+.action-button.secondary:hover {
+  background: #2a2929;
+  border-color: #4a15ec;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+
+  .profile-name h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}

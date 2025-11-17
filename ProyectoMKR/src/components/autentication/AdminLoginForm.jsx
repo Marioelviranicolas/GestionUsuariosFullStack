@@ -9,25 +9,27 @@ export default function AdminLoginForm() {
   const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
 
-  const onSubmit = async (data) => {
-    try {
-          setErrorMsg('');
-          const usuario = await loginUser(data.username, data.password);
-          console.log('Usuario autenticado: ', usuario);
-    
-          alert(`Bienvenido ${usuario?.username || data.username}`);
-    
-          if (usuario.perfil?.idPerfil == 1) {
-            navigate('/admin'); //te mande a administrador
-          } else {
-            navigate('/dashboard'); //te manda a cliente
-          }
-    
-        } catch (error) {
-          console.error('Error al iniciar sesion:', error);
-          alert('Credenciales incorrectas');
-        }
-      }
+ const onSubmit = async (data) => {
+  try {
+    setErrorMsg('');
+    const usuario = await loginUser(data.username, data.password);
+    console.log('Usuario autenticado: ', usuario);
+
+    // ✅ Verificar que SEA administrador
+    if (usuario.perfil?.idPerfil !== 1) {
+      setErrorMsg('Solo los administradores pueden acceder a este panel');
+      return; // Detener la ejecución
+    }
+
+    // Solo si es administrador (idPerfil === 1)
+    alert(`Bienvenido Admin: ${usuario?.username || data.username}`);
+    navigate('/admin');
+
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
+    setErrorMsg('Credenciales incorrectas');
+  }
+}
     
   return (
     <div className="login-box">
