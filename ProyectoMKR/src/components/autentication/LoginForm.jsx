@@ -10,32 +10,47 @@ export default function Login() {
   const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
   const [userType, setUserType] = useState('cliente');
+  
   async function onSubmit(data) {
-    try {
-      setErrorMsg('');
-      const usuario = await loginUser(data.username, data.password);
-      console.log('Usuario autenticado: ', usuario);
+  try {
+    setErrorMsg('');
+    const usuario = await loginUser(data.username, data.password);
+    console.log('Usuario autenticado: ', usuario);
+    console.log('Perfil ID:', usuario.perfil?.idPerfil);
 
-      alert(`Bienvenido ${usuario?.username || data.username}`);
-
-      if (usuario.perfil?.idPerfil == 1) {
-        navigate('/admin'); //te mande a administrador
-      } else {
-        navigate('/dashboard'); //te manda a cliente
-      }
-
-    } catch (error) {
-      console.error('Error al iniciar sesion:', error);
-      alert('Credenciales incorrectas');
+    // ✅ Verificar que NO sea administrador
+    if (usuario.perfil?.idPerfil === 1) {
+      console.log('Es admin, bloqueando acceso');
+      setErrorMsg('Los administradores deben usar el panel de administración');
+      return; // Detener la ejecución
     }
-  }
 
+    // Solo si es cliente (idPerfil === 2)
+    if (usuario.perfil?.idPerfil === 2) {
+      localStorage.setItem("user", JSON.stringify(usuario));
+      alert(`Bienvenido ${usuario?.username || data.username}`);
+      navigate('/dashboard');
+    } else {
+      setErrorMsg('❌ No tienes permisos para acceder como cliente');
+    }
+
+  } catch (error) {
+    console.error('Error al iniciar sesión:', error);
+    setErrorMsg('❌ Credenciales incorrectas');
+  }
+}
    return (
     <div className="login-box">
       <div className="login-header">
         <span className="admin-badge">Cliente</span>
         <h2>Login cliente</h2>
       </div>
+
+      {errorMsg && (
+        <div className="error-message">
+          {errorMsg}
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-group">
           <label>Usuario</label>
