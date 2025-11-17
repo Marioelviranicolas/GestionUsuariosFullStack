@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import api from '../../api/api'
 import './AdminCreateUser.css'
+
 export default function AdminCreateUser(){
   const [formData, setFormData] = useState({
     username: '',
@@ -35,13 +36,18 @@ export default function AdminCreateUser(){
     e.preventDefault();
     // Ajustar enabled a número
     const payload = {
-      ...formData,
+      username: formData.username,
+      password: formData.password,
+      nombre: formData.nombre,
+      apellidos: formData.apellidos,
       enabled: Number(formData.enabled),
-      id_perfil: formData.perfilId || null,
-      fecha_registro: formData.fechaRegistro || null,
-      fecha_nacimiento: formData.fechaNacimiento || null,
+      fechaRegistro: formData.fechaRegistro || null,
+      fechaNacimiento: formData.fechaNacimiento || null,
+      direccion: formData.direccion,
+      // Enviar perfil solo si se selecciona, sino backend aplicará perfil por defecto
+      perfil: formData.perfilId ? { idPerfil: Number(formData.perfilId) } : null
     };
-    api.post('/usuarios', payload)
+    api.post('/registro', payload)
       .then(res => {
         alert('Usuario creado correctamente');
         setFormData({
@@ -58,7 +64,7 @@ export default function AdminCreateUser(){
       })
       .catch(err => console.error('Error al crear usuario', err));
   };
-  return (
+   return (
     <div className="admin-create-user">
       <h1>Crear Usuario</h1>
       <form onSubmit={handleSubmit}>
@@ -105,6 +111,7 @@ export default function AdminCreateUser(){
               <option key={p.id_perfil} value={p.id_perfil}>{p.nombre}</option>
             ))}
           </select>
+          <small>Si no seleccionas perfil, se asignará automáticamente "Cliente"</small>
         </div>
         <button type="submit">Crear Usuario</button>
       </form>
