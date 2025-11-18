@@ -20,7 +20,7 @@ export default function AdminCreateUser(){
 
   // Cargar los perfiles para el dropdown
   useEffect(() => {
-    api.get('/perfiles') // supongamos que esta ruta devuelve todos los perfiles
+    api.get('/perfiles') // devuelve todos los perfiles
       .then(res => setPerfiles(res.data))
       .catch(err => console.error('Error al cargar perfiles', err));
   }, []);
