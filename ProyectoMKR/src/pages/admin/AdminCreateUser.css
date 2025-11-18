@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
+
+
+.cuerpo{
+    height: 100vh;
+    background: black;
+    display: flex;
+}
+/* CONTENEDOR PRINCIPAL */
+.admin-create-user {
+  width: 750px;
+  max-height: 95vh;
+  padding: 3rem 2.5rem;
+  background: rgb(40, 39, 39);
+  border-radius: 7px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid #4a15ec;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  overflow-y: auto;
+  margin: auto;
+}
+
+.admin-create-user:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(74, 21, 236, 0.3);
+}
+
+/* TÍTULO */
+.admin-create-user h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* FORMULARIO */
+.admin-create-user form {
+  width: 100%;
+}
+
+.admin-create-user form div {
+  margin-bottom: 1.5rem;
+}
+
+/* LABELS */
+.admin-create-user label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f8f8f8;
+  margin-bottom: 0.5rem;
+}
+
+/* INPUTS / SELECTS */
+.admin-create-user input,
+.admin-create-user select {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  background: #2a2929;
+  border: 1px solid #4a4a4a;
+  border-radius: 5px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.admin-create-user input:focus,
+.admin-create-user select:focus {
+  outline: none;
+  border-color: #4a15ec;
+  background: #1f1f1f;
+  box-shadow: 0 0 0 3px rgba(74, 21, 236, 0.15);
+}
+
+.admin-create-user input::placeholder {
+  color: #888;
+}
+
+/* TEXTO PEQUEÑO */
+.admin-create-user small {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  color: #b5b5b5;
+}
+
+/* BOTÓN */
+.admin-create-user button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  background: #161616;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.admin-create-user button:hover {
+  background: #4a15ec;
+  transform: scale(1.02);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .admin-create-user {
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem 1.5rem;
+  }
+
+  .admin-create-user h1 {
+    font-size: 1.6rem;
+  }
+}
