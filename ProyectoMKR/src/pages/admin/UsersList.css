@@ -11,6 +11,26 @@
   font-family: 'DM Sans', sans-serif;
 }
 
+.logout-floating {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  background: #ff4c4c;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  border: 1px solid #ff4c4c;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.logout-floating:hover {
+  background: #ff1f1f;
+  transform: scale(1.05);
+}
+
 /* Contenedor */
 .users-list-container {
   width: 900px;

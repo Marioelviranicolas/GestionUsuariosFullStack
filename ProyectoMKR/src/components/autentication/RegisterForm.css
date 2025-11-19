@@ -2,45 +2,49 @@
 
 /* Contenedor principal del registro */
 .register-form-container {
-  width: 400px;
-  height: 90vh;
-  padding: 3rem 2.5rem;
+  width: 650px;                   /* ✔ Más grande para que NO haya scroll */
+  height: auto;
+  padding: 3rem 3rem;
   background: rgb(40, 39, 39);
-  border-radius: 7px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
   border: 1px solid #4a15ec;
   transition: all 0.3s ease;
-  font-family: 'DM Sans', sans-serif;
-  margin-right: 200px;
-  overflow-y: auto
+  margin: 3rem auto;             /* ✔ Centrado */
+  display: flex;
+  flex-direction: column;
 }
 
 .register-form-container:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(74, 21, 236, 0.3);
+  box-shadow: 0 20px 60px rgba(74, 21, 236, 0.35);
 }
 
-/* Título del formulario */
+/* Título */
 .register-form-title {
   font-size: 2rem;
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 2rem;
-  text-align: left;
+  text-align: center;
 }
 
-/* Formulario */
+/* Formulario organizado en DOS COLUMNAS */
 .register-form {
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* ✔ Dos columnas */
+  gap: 1.5rem 2rem;                /* ✔ Espaciado uniforme */
 }
 
+/* Inputs */
 .form-group {
-  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-label {
-  display: block;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: #f8f8f8;
   margin-bottom: 0.5rem;
@@ -50,49 +54,49 @@
   width: 100%;
   padding: 0.9rem;
   font-size: 1rem;
-  font-family: 'DM Sans', sans-serif;
   background: #2a2929;
   border: 1px solid #4a4a4a;
   border-radius: 5px;
   color: #ffffff;
   transition: all 0.3s ease;
-  box-sizing: border-box;
 }
 
 .form-input:focus {
   outline: none;
   border-color: #4a15ec;
   background: #1f1f1f;
-  box-shadow: 0 0 0 3px rgba(74, 21, 236, 0.1);
+  box-shadow: 0 0 0 3px rgba(74, 21, 236, 0.15);
+}
+.form-group-full {
+  grid-column: 1 / 3;    /* ✔ ocupa dos columnas */
 }
 
-.form-input::placeholder {
-  color: #888;
+/* Campos especiales que deben ocupar toda la fila */
+.form-error,
+.form-button {
+  grid-column: 1 / 3; /* ✔ Ocupa las dos columnas */
 }
 
-/* Mensaje de error */
+/* Error */
 .form-error {
   background: rgba(255, 117, 140, 0.15);
   border: 1px solid #ff758c;
   color: #ff758c;
-  padding: 0.8rem;
+  padding: 1rem;
   border-radius: 5px;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
   text-align: center;
+  font-size: 0.95rem;
 }
 
-/* Botón de submit */
+/* Botón */
 .form-button {
-  width: 100%;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  font-family: 'DM Sans', sans-serif;
   background: #161616;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 1rem;
@@ -103,22 +107,20 @@
   transform: scale(1.02);
 }
 
-.form-button:disabled,
-.form-button-disabled {
+.form-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background: #161616;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .register-form-container {
-    width: 100%;
-    max-width: 450px;
+    width: 95%;
     padding: 2rem 1.5rem;
   }
 
-  .register-form-title {
-    font-size: 1.6rem;
+  .register-form {
+    grid-template-columns: 1fr; /* ✔ Una columna en móviles */
   }
 }
+
