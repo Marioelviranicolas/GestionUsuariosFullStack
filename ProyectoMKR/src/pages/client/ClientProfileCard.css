@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
 
 .profile-card {
+  position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
+  height: 700px;
   padding: 2.5rem;
   background: rgb(40, 39, 39);
   border-radius: 10px;
@@ -11,6 +13,30 @@
   transition: all 0.3s ease;
   font-family: 'DM Sans', sans-serif;
   margin: 2rem auto;
+}
+
+.btn-logout {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  background: #161616;
+  border: 1px solid #4a15ec;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.25s;
+ 
+}
+
+.btn-logout:hover {
+  background: #f30707;
+  transform: scale(1.08);
+  border: 1px solid #f30707;
 }
 
 .profile-card:hover {

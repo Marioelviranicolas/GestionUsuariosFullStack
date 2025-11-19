@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './ClientProfileCard.css';
 import { uploadProfilePhoto } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function ClientProfileCard() {
   const [userData, setUserData] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const navigate = useNavigate(); // 🔹 Esto faltaba
+  
+
+  
 
  useEffect(() => {
   const savedUser = localStorage.getItem("user");
@@ -74,8 +80,34 @@ export default function ClientProfileCard() {
     return `${nombre.charAt(0)}${apellidos.charAt(0)}`.toUpperCase();
   };
 
+   
+
+  const handleLogout = () => {
+    localStorage.removeItem('user'); // limpiar sesión
+    navigate('/');  
+  }
+
+  
+
   return (
     <div className="profile-card">
+      <button className="btn-logout" onClick={handleLogout}>
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width="20" 
+      height="20" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2"
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    >
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+      <polyline points="16 17 21 12 16 7" />
+      <line x1="21" y1="12" x2="6" y2="12" />
+    </svg>
+  </button>
       <div className="profile-header">
         <div className="profile-image-container">
           {profileImage ? (

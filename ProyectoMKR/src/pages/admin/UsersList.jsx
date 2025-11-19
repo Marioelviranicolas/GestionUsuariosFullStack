@@ -93,11 +93,26 @@ export default function UsersList() {
   return (
     <div className="users-page">
 
-      {/* Botón Cerrar sesión */}
-      <button className="logout-floating" onClick={handleLogout}>
-      Cerrar sesión
-    </button>
+        
       <div className="users-list-container">
+      <button className="logout-floating" onClick={handleLogout}>
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="40" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="white" 
+            stroke-width="2"
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            style={{ marginRight: "8px" }}
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="6" y2="12" />
+          </svg>
+        </button>
         <h2 className="users-title">Lista de usuarios</h2>
   
         <div className="create-button">
@@ -165,7 +180,7 @@ export default function UsersList() {
                     value={editData.perfilId ?? ''}
                     onChange={handleChange}
                   >
-                    <option value="">--Selecciona un perfil--</option>
+                    <option value="">Selecciona un perfil</option>
                     <option value={1}>Admin</option>
                     <option value={2}>Cliente</option>
                     <option value={3}>Empleado</option>
@@ -180,15 +195,27 @@ export default function UsersList() {
               ) : (
   
                 /* MODO NORMAL */
-                <div className="user-info">
-                  <span className="user-text">
-                    {u.nombre} ({u.username}) — {u.perfil?.nombre || 'Cliente'}
-                  </span>
-  
-                  <div className="actions">
+                <div className="user-card">
+                  <div className="user-avatar">
+                    {u.foto ? (
+                      <img src={u.foto} alt={`${u.nombre} ${u.apellidos}`} className="avatar-image" />
+                    ) : (
+                      <div className="avatar-initials">
+                        {u.nombre.charAt(0)}{u.apellidos.charAt(0)}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="user-info">
+                    <p className="user-name">{u.nombre} {u.apellidos}</p>
+                    <p className="user-role">{u.perfil?.nombre || "Cliente"}</p>
+                  </div>
+
+                  <div className="card-actions">
                     <button className="btn-edit" onClick={() => handleEdit(u)}>Editar</button>
                     <button className="btn-delete" onClick={() => handleDelete(u.username)}>Eliminar</button>
                   </div>
+
                 </div>
               )}
   
