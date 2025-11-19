@@ -190,6 +190,35 @@
   padding: 2rem;
 }
 
+.save-photo-btn {
+  display: flex;
+  background: #000000;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 400;
+  font-size: 15px;
+  margin: 1rem auto;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width:30%;
+  height: 40px;
+  box-shadow: 0 5px 20px rgba(18, 4, 63, 0.35);
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+ 
+}
+
+.save-photo-btn:hover {
+  background: #4a15ec;
+  transform: translateY(-3px);
+}
+
+.save-photo-btn:active {
+  transform: translateY(-1px);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .profile-card {

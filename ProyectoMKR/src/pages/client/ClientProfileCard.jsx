@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './ClientProfileCard.css';
+import { uploadProfilePhoto } from '../../api/api';
 
 
 export default function ClientProfileCard() {
   const [userData, setUserData] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
  useEffect(() => {
   const savedUser = localStorage.getItem("user");
@@ -16,6 +18,7 @@ export default function ClientProfileCard() {
       // Evitar {} vacío
       if (parsed && Object.keys(parsed).length > 0) {
         setUserData(parsed);
+        setProfileImage(parsed.foto || null);
       }
     } catch (err) {
       console.error("Error parsing user:", err);
@@ -26,11 +29,37 @@ export default function ClientProfileCard() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      setSelectedFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setProfileImage(reader.result);
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  //  NUEVO  — Botón para subir foto al backend
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      alert("Selecciona una imagen primero");
+      return;
+    }
+
+    try {
+      const response = await uploadProfilePhoto(selectedFile, userData.username);
+
+      // Actualizar tarjeta en pantalla
+      setProfileImage(response.foto);
+
+      // Guardar también en localStorage
+      const updatedUser = { ...userData, foto: response.foto };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      setUserData(updatedUser);
+
+      alert("Foto actualizada correctamente");
+    } catch (e) {
+      console.error("Error subiendo imagen:", e);
+      alert("Hubo un error al subir la foto");
     }
   };
 
@@ -95,6 +124,13 @@ export default function ClientProfileCard() {
           <p>{userData.direccion}</p>
         </div>
       </div>
+
+      {/*  BOTÓN NUEVO  */}
+      {selectedFile && (
+          <button className="save-photo-btn" onClick={handleUpload}>
+            Editar Perfil
+          </button>
+        )}
     </div>
   );
 }
