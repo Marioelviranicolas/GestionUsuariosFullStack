@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api/api';
 import './UsersList.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function UsersList() {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [editData, setEditData] = useState({});
+  const navigate = useNavigate();
 
   // Cargar usuarios al inicio
   useEffect(() => {
@@ -84,8 +86,17 @@ export default function UsersList() {
     setEditData({});
   };
 
+  const handleLogout = () => {
+    navigate('/');  
+  }
+
   return (
     <div className="users-page">
+
+      {/* Botón Cerrar sesión */}
+      <button className="logout-floating" onClick={handleLogout}>
+      Cerrar sesión
+    </button>
       <div className="users-list-container">
         <h2 className="users-title">Lista de usuarios</h2>
   
@@ -94,7 +105,7 @@ export default function UsersList() {
             Crear usuario
           </Link>
         </div>
-  
+
         <ul className="users-list">
           {users.map(u => (
             <li key={u.idUsuario ?? u.username} className="user-item">

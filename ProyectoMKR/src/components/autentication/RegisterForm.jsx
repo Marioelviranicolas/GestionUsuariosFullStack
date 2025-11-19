@@ -68,7 +68,7 @@ export default function RegisterForm() {
     try {
       setIsSubmitting(true);
       const { ok, data, error } = await register(usuario);
-    
+
       if (data === 1) {
         alert('✅ Usuario registrado con éxito');
         console.log('📤 Enviando datos al backend:', usuario);
@@ -76,12 +76,12 @@ export default function RegisterForm() {
         navigate('/login');
         return;
       }
-  
+
       if (data === -1) {
         setErrorMessage('⚠️ El usuario ya existe, prueba con otro correoo.');
         return;
       }
-  
+
       setErrorMessage('❌ Error desconocido al registrar el usuario.');
     } catch (err) {
       console.error('❌ Error en la solicitud:', err);
@@ -89,9 +89,9 @@ export default function RegisterForm() {
     } finally {
       setIsSubmitting(false);
     }
-  };    
+  };
 
- return (
+  return (
     <div className="register-form-container">
       <h2 className="register-form-title">Registro de Usuario</h2>
 
@@ -144,7 +144,7 @@ export default function RegisterForm() {
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group form-group-full">
           <label className="form-label">Dirección</label>
           <input
             className="form-input"
