@@ -12,7 +12,7 @@ export default function UsersList() {
 
   // Cargar usuarios al inicio
   useEffect(() => {
-    api.get('/todos/exceptUsers')
+    api.get('/todos')
       .then(res => setUsers(res.data))
       .catch(err => console.error('Error al cargar usuarios', err));
   }, []);
@@ -39,7 +39,7 @@ export default function UsersList() {
       nombre: usuario.nombre || '',
       apellidos: usuario.apellidos || '',
       enabled: usuario.enabled ?? 1,
-      perfilId: usuario.perfil?.id_perfil ?? null,
+      perfilId: usuario.perfil?.id_perfil ??"",
       direccion: usuario.direccion  || '',
       fechaNacimiento: usuario.fechaNacimiento || ''
     });
@@ -59,10 +59,11 @@ export default function UsersList() {
       nombre: editData.nombre,
       apellidos: editData.apellidos,
       enabled: Number(editData.enabled),
-      perfil: editData.perfilId ? { idPerfil: Number(editData.perfilId) } : null,
+      idPerfil: editData.perfilId ? Number(editData.perfilId) : null,
       direccion: editData.direccion,
       fechaNacimiento: editData.fechaNacimiento
     };
+    console.log('Payload enviado al backend',payload);
 
     api.put(`/usuarios/${encodeURIComponent(editingUser.username)}`, payload)
     .then(res => {
@@ -103,9 +104,9 @@ export default function UsersList() {
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="white" 
-            stroke-width="2"
-            stroke-linecap="round" 
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round" 
+            strokeLinejoin="round"
             style={{ marginRight: "8px" }}
           >
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -184,6 +185,7 @@ export default function UsersList() {
                     <option value={1}>Admin</option>
                     <option value={2}>Cliente</option>
                     <option value={3}>Empleado</option>
+                    <option value ={4}>Jefe</option>
                   </select>
   
                   <div className="edit-actions">
