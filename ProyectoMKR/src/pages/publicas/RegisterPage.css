@@ -15,7 +15,7 @@
 
 .register-container {
   display: flex;
-  justify-content: right;
+  justify-content:center;
   align-items: center;
   width: 100%;
   animation: fadeIn 0.8s ease-out;
@@ -34,7 +34,7 @@
 
 /* Contenedor principal del formulario */
 .register-form-container {
-  width: 500px;
+  width: 750px;
   padding: 3rem 2.5rem;
   background: rgb(40, 39, 39);
   border-radius: 7px;

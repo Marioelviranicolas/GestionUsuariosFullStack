@@ -68,6 +68,7 @@ export default function AdminCreateUser(){
       .catch(err => console.error('Error al crear usuario', err));
   };
    return (
+    <div className='cuerpo'>
     <div className="admin-create-user">
       <h1>Crear Usuario</h1>
       <form onSubmit={handleSubmit}>
@@ -117,6 +118,7 @@ export default function AdminCreateUser(){
       <button type="button" className="volver-btn" onClick={() => navigate('/admin')}>
         Volver a la lista de usuarios
       </button>
+    </div>
     </div>
   );
 }
