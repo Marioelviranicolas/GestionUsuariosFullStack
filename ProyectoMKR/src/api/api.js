@@ -18,6 +18,8 @@ api.interceptors.request.use(config => {
   return config;
 });
 
+
+
 //Funcion del login 
 export const loginUser = async (username, password) => {
   try {
@@ -34,6 +36,33 @@ export const loginUser = async (username, password) => {
     localStorage.removeItem('auth');
     throw error;
     
+  }
+}
+
+export const uploadProfilePhoto = async (file, username) => {
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // ✅ Usar el endpoint correcto: /usuarios/{username}/foto
+    const response = await api.post(`/usuarios/${username}/foto`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
+    // ✅ Actualizar localStorage automáticamente
+    const perfilGuardado = localStorage.getItem('perfil');
+    if (perfilGuardado) {
+      const perfil = JSON.parse(perfilGuardado);
+      perfil.foto = response.data.foto;
+      localStorage.setItem('perfil', JSON.stringify(perfil));
+    }
+
+    return response.data; // { message, foto, username }
+  } catch (error) {
+    console.error('Error al subir foto:', error);
+    throw error;
   }
 }
 export default api;
