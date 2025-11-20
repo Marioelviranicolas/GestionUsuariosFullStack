@@ -3,7 +3,6 @@ import api from '../../api/api';
 import './UsersList.css';
 import { Link, useNavigate } from "react-router-dom";
 
-
 export default function UsersList() {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
@@ -39,8 +38,8 @@ export default function UsersList() {
       nombre: usuario.nombre || '',
       apellidos: usuario.apellidos || '',
       enabled: usuario.enabled ?? 1,
-      perfilId: usuario.perfil?.id_perfil ??"",
-      direccion: usuario.direccion  || '',
+      perfilId: usuario.perfil?.id_perfil ?? "",
+      direccion: usuario.direccion || '',
       fechaNacimiento: usuario.fechaNacimiento || ''
     });
   };
@@ -63,22 +62,32 @@ export default function UsersList() {
       direccion: editData.direccion,
       fechaNacimiento: editData.fechaNacimiento
     };
-    console.log('Payload enviado al backend',payload);
 
+    console.log('Payload enviado al backend', payload);
+
+    // Realizamos el PUT al backend
     api.put(`/usuarios/${encodeURIComponent(editingUser.username)}`, payload)
-    .then(res => {
-      setUsers(prev =>
-        prev.map(u =>
-          u.username === editingUser.username
-            ? { ...u, ...payload, perfil: payload.perfil || u.perfil }
-            : u
-        )
-      );
+      .then(res => {
+        // Aquí recibimos la respuesta del backend. Si es necesario, actualizamos los datos directamente desde la respuesta del backend
+        const updatedUser = res.data; // Asegúrate de que el backend te devuelva el objeto del usuario con el perfil actualizado
 
-      // Limpiamos el estado de edición
-      setEditingUser(null);
-      setEditData({});
-    })
+        // Actualizamos el estado de users, reflejando los cambios de rol y demás
+        setUsers(prev =>
+          prev.map(u =>
+            u.username === editingUser.username
+              ? { 
+                  ...u, 
+                  ...updatedUser, // Aquí usamos la respuesta del backend para actualizar el usuario completamente
+                  perfil: updatedUser.perfil // Aseguramos que se actualice también el perfil
+                }
+              : u
+          )
+        );
+
+        // Limpiamos el estado de edición
+        setEditingUser(null);
+        setEditData({});
+      })
       .catch(err => console.error('Error al actualizar usuario', err));
   };
 
@@ -88,24 +97,22 @@ export default function UsersList() {
   };
 
   const handleLogout = () => {
-    navigate('/');  
-  }
+    navigate('/');
+  };
 
   return (
     <div className="users-page">
-
-        
       <div className="users-list-container">
-      <button className="logout-floating" onClick={handleLogout}>
-          <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="40" 
-            height="20" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="white" 
+        <button className="logout-floating" onClick={handleLogout}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
             strokeWidth="2"
-            strokeLinecap="round" 
+            strokeLinecap="round"
             strokeLinejoin="round"
             style={{ marginRight: "8px" }}
           >
@@ -115,7 +122,7 @@ export default function UsersList() {
           </svg>
         </button>
         <h2 className="users-title">Lista de usuarios</h2>
-  
+
         <div className="create-button">
           <Link to="/admin/create-user" className="btn-create">
             Crear usuario
@@ -125,11 +132,9 @@ export default function UsersList() {
         <ul className="users-list">
           {users.map(u => (
             <li key={u.idUsuario ?? u.username} className="user-item">
-  
               {/* MODO EDICIÓN */}
               {editingUser?.username === u.username ? (
                 <div className="edit-form">
-  
                   <input
                     type="text"
                     name="nombre"
@@ -138,7 +143,7 @@ export default function UsersList() {
                     onChange={handleChange}
                     placeholder="Nombre"
                   />
-  
+
                   <input
                     type="text"
                     name="apellidos"
@@ -147,7 +152,7 @@ export default function UsersList() {
                     onChange={handleChange}
                     placeholder="Apellidos"
                   />
-  
+
                   <select
                     name="enabled"
                     className="edit-input"
@@ -157,7 +162,7 @@ export default function UsersList() {
                     <option value={1}>Activo</option>
                     <option value={0}>Inactivo</option>
                   </select>
-  
+
                   <input
                     type="text"
                     name="direccion"
@@ -166,7 +171,7 @@ export default function UsersList() {
                     onChange={handleChange}
                     placeholder="Dirección"
                   />
-  
+
                   <input
                     type="date"
                     name="fechaNacimiento"
@@ -174,7 +179,7 @@ export default function UsersList() {
                     value={editData.fechaNacimiento}
                     onChange={handleChange}
                   />
-  
+
                   <select
                     name="perfilId"
                     className="edit-input"
@@ -185,17 +190,15 @@ export default function UsersList() {
                     <option value={1}>Admin</option>
                     <option value={2}>Cliente</option>
                     <option value={3}>Empleado</option>
-                    <option value ={4}>Jefe</option>
+                    <option value={4}>Jefe</option>
                   </select>
-  
+
                   <div className="edit-actions">
                     <button className="btn-save" onClick={handleSave}>Guardar</button>
                     <button className="btn-cancel" onClick={handleCancel}>Cancelar</button>
                   </div>
                 </div>
-  
               ) : (
-  
                 /* MODO NORMAL */
                 <div className="user-card">
                   <div className="user-avatar">
@@ -210,22 +213,19 @@ export default function UsersList() {
 
                   <div className="user-info">
                     <p className="user-name">{u.nombre} {u.apellidos}</p>
-                    <p className="user-role">{u.perfil?.nombre || "Cliente"}</p>
+                    <p className="user-role">{u.perfil?.nombre || "Desconocido"}</p>
                   </div>
 
                   <div className="card-actions">
                     <button className="btn-edit" onClick={() => handleEdit(u)}>Editar</button>
                     <button className="btn-delete" onClick={() => handleDelete(u.username)}>Eliminar</button>
                   </div>
-
                 </div>
               )}
-  
             </li>
           ))}
         </ul>
       </div>
     </div>
   );
-  
 }
