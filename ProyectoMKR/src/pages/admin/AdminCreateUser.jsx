@@ -138,7 +138,7 @@ export default function AdminCreateUser() {
             </select>
             <small>Si no seleccionas perfil, se asignará automáticamente "Cliente"</small>
           </div>
-          <button type="submit">Crear Usuario</button>
+          <button type="submit" className="crear-usuario">Crear Usuario</button>
         </form>
         <button type="button" className="volver-btn" onClick={() => navigate('/admin')}>
           Volver a la lista de usuarios
