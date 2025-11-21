@@ -31,7 +31,7 @@ function HomePage() {
 
           <div className="card">
             <h2>Registrarse</h2>
-            <p>Crea tu cuenta y comienza a gestionar usuarios de forma eficiente</p>
+            <p>Crea tu cuenta y gestiona tu perfil: revisa tus datos y cambia tu avatar cuando quieras.</p>
             <Link to="/register" className="btn btn-register">
               Comenzar Ahora
             </Link>
