@@ -16,8 +16,8 @@
 .logout-floating {
   width: 80px;
   position: relative;
-  top: -15px;
-  right: -930px;
+  top: 50px;
+  right: -1227px;
   background: #fd2f2f;
   padding: 0.8rem 1.2rem;
   color: white;
@@ -37,13 +37,14 @@
 
 /* Contenedor */
 .users-list-container {
-  width: 1100px;
+  width: 1400px;
   background: #1f1f1f;
   padding: 2.7rem;
   border-radius: 10px;
   border: 1px solid #4a15ec;
   box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   animation: fadeIn 0.4s ease-out;
+  margin-bottom: 100px;
 }
 
 .users-title {
@@ -228,7 +229,7 @@ transform: scale(1.04);
 }
 
 .btn-save {
-  margin-left: 50px;
+  margin-left: 13px;
   background: #161616;
   color: #ffffff;
   border: 1px solid #4a15ec;
@@ -247,10 +248,9 @@ transform: scale(1.04);
 
 
 .btn-cancel {
-  
+  color: white;
   background: #1d1d1d;
-  border: 1px solid #555;
-  color: #b0b0b0;
+  border: 1px solid #000000;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   font-weight: 600;
@@ -259,9 +259,7 @@ transform: scale(1.04);
 }
 
 .btn-cancel:hover {
-  background: #343434;
-  color: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+  background: #000000;
 }
 
 /* Animación */
